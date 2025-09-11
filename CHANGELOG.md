@@ -1,3 +1,48 @@
+## 0.2.2 (2025-09-11)
+
+
+### 🚀 Features
+
+- server-side save and menu updates ([0ea8e9e](https://github.com/yy710/mind/commit/0ea8e9e))
+- **arrow:** support set arrow mark ([#258](https://github.com/yy710/mind/pull/258))
+- **eraser:** implement eraser feature ([#221](https://github.com/yy710/mind/pull/221))
+- **eraser:** adding i18n for eraser ([427a730](https://github.com/yy710/mind/commit/427a730))
+- **eraser:** Improving all the eraser feature mentioned in #247 ([#249](https://github.com/yy710/mind/pull/249), [#247](https://github.com/yy710/mind/issues/247))
+- **i18n:** added i18n tool for multi-Language support ([#232](https://github.com/yy710/mind/pull/232))
+- **i18n:** adding i18n for clean confirm ([7bdf543](https://github.com/yy710/mind/commit/7bdf543))
+- **i18n:** refactor the structure of i18n, adding with-common getI18n for plait objects, complete the translation of zh,en,ru ([#276](https://github.com/yy710/mind/pull/276))
+- **i18n:** add Arabic language ([#280](https://github.com/yy710/mind/pull/280))
+- **popup-toolbar:** add stroke select state, add stroke type text ([#272](https://github.com/yy710/mind/pull/272))
+- **save-dialog:** add SaveDialog component and styles; replace window.prompt with dialog flow; i18n keys and translations for save dialog; hotkey and menu now open dialog; upload uses provided name or default without prompt ([1df4dce](https://github.com/yy710/mind/commit/1df4dce))
+- **server:** add unified express server with same-origin API and robust client fallbacks; fix OpenFromServer endpoint resolution; add start:unified script; update upload endpoint logic; ignore .uploads and payload.json ([ff55714](https://github.com/yy710/mind/commit/ff55714))
+
+### 🩹 Fixes
+
+- fix dockerfile build logic ([#201](https://github.com/yy710/mind/pull/201))
+- **cursor:** set mind element css to always be inherit ([#260](https://github.com/yy710/mind/pull/260))
+- **freehand&i18n:** fix i18n of freehand toolbar and make secondary toolbar always exist while using freehand element ([#255](https://github.com/yy710/mind/pull/255))
+- **frontend:** comment addDebugLog to prevent potential XSS security issue ([#269](https://github.com/yy710/mind/pull/269))
+- **hotkey:** prevent switch arrow creation mode when mod+a #195 ([#200](https://github.com/yy710/mind/pull/200), [#195](https://github.com/yy710/mind/issues/195))
+- **hotkey:** prevent enter arrow creation mode when press a and there are some selected elements ([#205](https://github.com/yy710/mind/pull/205))
+- **hotkey:** Prevent Arc browser undo on Cmd+Z in Drawnix ([#254](https://github.com/yy710/mind/pull/254))
+- **hotkey:** skip creation hotkey when use press special key and the among of alt, meta and ctrl ([#262](https://github.com/yy710/mind/pull/262))
+- **menu:** Adding margin for the menu components ([c9ecd09](https://github.com/yy710/mind/commit/c9ecd09))
+- **menu:** fix hotkey instruction for every OS ([#274](https://github.com/yy710/mind/pull/274))
+- **mind:** bump plait into 0.84.0 to fix text can not show completely mentioned in #208 ([#261](https://github.com/yy710/mind/pull/261), [#208](https://github.com/yy710/mind/issues/208))
+- **toolbar:** fix issue mentioned in #290 ([#291](https://github.com/yy710/mind/pull/291), [#290](https://github.com/yy710/mind/issues/290))
+- **tutorial:** fix tutorial instruction issues and update styles ([#289](https://github.com/yy710/mind/pull/289))
+
+### ❤️  Thank You
+
+- Andy Lu (Lu, Yu-An) @NaoCoding
+- coderwei @coderwei99
+- MalikAli @MalikAliQassem
+- Peter Chen
+- pubuzhixing8 @pubuzhixing8
+- Six
+- vishwak @PATTASWAMY-VISHWAK-YASASHREE
+- yy710
+
 ## 0.2.1 (2025-08-06)
 
 
