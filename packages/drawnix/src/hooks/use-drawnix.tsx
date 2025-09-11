@@ -40,6 +40,7 @@ export type DrawnixState = {
   isPencilMode: boolean;
   openDialogType: DialogType | null;
   openCleanConfirm: boolean;
+  openSaveDialog: boolean;
   linkState?: LinkState | null;
 };
 

@@ -71,8 +71,10 @@ const enTranslations: Translations = {
   'language.english': 'English',
   'language.russian': 'Русский',
   'language.arabic': 'عربي',
+
   // Menu items
-  'menu.open': 'Open',
+  'menu.open': 'Import File',
+  'menu.openFromServer': 'Open File (from server)',
   'menu.saveFile': 'Save File',
   'menu.exportFile': 'Export File',
   'menu.exportImage': 'Export Image',
@@ -87,14 +89,12 @@ const enTranslations: Translations = {
   'dialog.mermaid.flowchart': 'flowcharts',
   'dialog.mermaid.sequence': 'sequence diagrams',
   'dialog.mermaid.class': 'class diagrams',
-  'dialog.mermaid.otherTypes':
-    ', and other diagram types (rendered as images).',
+  'dialog.mermaid.otherTypes': ', and other diagram types (rendered as images).',
   'dialog.mermaid.syntax': 'Mermaid Syntax',
   'dialog.mermaid.placeholder': 'Write your Mermaid chart definition here…',
   'dialog.mermaid.preview': 'Preview',
   'dialog.mermaid.insert': 'Insert',
-  'dialog.markdown.description':
-    'Supports automatic conversion of Markdown syntax to mind map.',
+  'dialog.markdown.description': 'Supports automatic conversion of Markdown syntax to mind map.',
   'dialog.markdown.syntax': 'Markdown Syntax',
   'dialog.markdown.placeholder': 'Write your Markdown text definition here...',
   'dialog.markdown.preview': 'Preview',
@@ -107,10 +107,15 @@ const enTranslations: Translations = {
 
   // Clean confirm dialog
   'cleanConfirm.title': 'Clear Board',
-  'cleanConfirm.description':
-    'This will clear the entire board. Do you want to continue?',
+  'cleanConfirm.description': 'This will clear the entire board. Do you want to continue?',
   'cleanConfirm.cancel': 'Cancel',
   'cleanConfirm.ok': 'OK',
+
+  // Save dialog
+  'saveDialog.title': 'Save File',
+  'saveDialog.placeholder': 'Enter file name',
+  'saveDialog.cancel': 'Cancel',
+  'saveDialog.ok': 'Save',
 
   // Link popup items
   'popupLink.delLink': 'Delete Link',
@@ -136,25 +141,25 @@ const enTranslations: Translations = {
   'stroke.dashed': 'Dashed',
   'stroke.dotted': 'Dotted',
 
-  //markdown example
+  // markdown example
   'markdown.example': `# I have started
-
+  
   - Let me see who made this bug 🕵️ ♂️ 🔍
-    - 😯 💣
-      - Turns out it was me 👈 🎯 💘
-
+  - 😯 💣
+  - Turns out it was me 👈 🎯 💘
+  
   - Unexpectedly, it cannot run; why is that 🚫 ⚙️ ❓
-    - Unexpectedly, it can run now; why is that? 🎢 ✨
-      - 🤯 ⚡ ➡️ 🎉
-
+  - Unexpectedly, it can run now; why is that? 🎢 ✨
+  - 🤯 ⚡ ➡️ 🎉
+  
   - What can run 🐞 🚀
-    - then do not touch it 🛑 ✋
-      - 👾 💥 🏹 🎯
+  - then do not touch it 🛑 ✋
+  - 👾 💥 🏹 🎯
     
   ## Boy or girl 👶 ❓ 🤷 ♂️ ♀️
-
+  
   ### Hello world 👋 🌍 ✨ 💻
-
+  
   #### Wow, a programmer 🤯 ⌨️ 💡 👩 💻`,
 
   // Draw elements text

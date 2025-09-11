@@ -73,7 +73,8 @@ const zhTranslations: Translations = {
   'language.arabic': 'عربي',
   
   // Menu items
-  'menu.open': '打开',
+  'menu.open': '导入文件',
+  'menu.openFromServer': '打开文件（从服务器）',
   'menu.saveFile': '保存文件',
   'menu.exportFile': '导出文件',
   'menu.exportImage': '导出图片',
@@ -110,6 +111,12 @@ const zhTranslations: Translations = {
   'cleanConfirm.cancel': '取消',
   'cleanConfirm.ok': '确认',
 
+  // Save dialog
+  'saveDialog.title': '保存文件',
+  'saveDialog.placeholder': '输入文件名',
+  'saveDialog.cancel': '取消',
+  'saveDialog.ok': '保存',
+
   // Link popup items
   'popupLink.delLink': '移除连结',
 
@@ -118,7 +125,7 @@ const zhTranslations: Translations = {
   'popupToolbar.fontColor': '字体颜色',
   'popupToolbar.link': '链接',
   'popupToolbar.stroke': '边框',
-  
+
   // Text placeholders
   'textPlaceholders.link': '链接',
   'textPlaceholders.text': '文本',
@@ -142,20 +149,20 @@ const zhTranslations: Translations = {
   'mind.centralText': '中心主题',
   'mind.abstractNodeText': '摘要',
 
-  //markdown example
+  // markdown example
   'markdown.example': `# 我开始了
   
   - 让我看看是谁搞出了这个 bug 🕵️ ♂️ 🔍
-    - 😯 💣
-      - 原来是我 👈 🎯 💘
+  - 😯 💣
+  - 原来是我 👈 🎯 💘
   
   - 竟然不可以运行，为什么呢 🚫 ⚙️ ❓
-    - 竟然可以运行了，为什么呢？🎢 ✨
-      - 🤯 ⚡ ➡️ 🎉
+  - 竟然可以运行了，为什么呢？🎢 ✨
+  - 🤯 ⚡ ➡️ 🎉
   
   - 能运行起来的 🐞 🚀
-    - 就不要去动它 🛑 ✋
-      - 👾 💥 🏹 🎯
+  - 就不要去动它 🛑 ✋
+  - 👾 💥 🏹 🎯
       
   ## 男孩还是女孩 👶 ❓ 🤷 ♂️ ♀️
   

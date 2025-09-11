@@ -34,10 +34,11 @@ export const buildDrawnixHotkeyPlugin = (
           return;
         }
         if (isHotkey(['mod+s'], { byKey: true })(event)) {
-          saveToServer(board);
-          event.preventDefault();
-          return;
-        }
+-          saveToServer(board);
++          updateAppState({ openSaveDialog: true });
+           event.preventDefault();
+           return;
+         }
         if (
           isHotkey(['mod+backspace'])(event) ||
           isHotkey(['mod+delete'])(event)

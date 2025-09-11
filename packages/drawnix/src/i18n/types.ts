@@ -78,6 +78,7 @@ export interface Translations {
 
   // Menu items
   'menu.open': string;
+  'menu.openFromServer': string;
   'menu.saveFile': string;
   'menu.exportFile': string;
   'menu.exportImage': string;
@@ -113,6 +114,12 @@ export interface Translations {
   'cleanConfirm.description': string;
   'cleanConfirm.cancel': string;
   'cleanConfirm.ok': string;
+
+  // Save dialog
+  'saveDialog.title': string;
+  'saveDialog.placeholder': string;
+  'saveDialog.cancel': string;
+  'saveDialog.ok': string;
 
   // Link popup items
   'popupLink.delLink': string;

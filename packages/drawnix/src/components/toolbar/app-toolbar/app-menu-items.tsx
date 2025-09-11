@@ -14,14 +14,14 @@ import {
   ThemeColorMode,
   Viewport,
 } from '@plait/core';
-import { loadFromJSON, saveAsJSON } from '../../../data/json';
+import { isValidDrawnixData, loadFromJSON, saveAsJSON } from '../../../data/json';
 import MenuItem from '../../menu/menu-item';
 import MenuItemLink from '../../menu/menu-item-link';
 import { saveAsImage } from '../../../utils/image';
 import { useDrawnix } from '../../../hooks/use-drawnix';
 import { useI18n } from '../../../i18n';
 import Menu from '../../menu/menu';
-import { useContext } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { MenuContentPropsContext } from '../../menu/common';
 import { EVENT } from '../../../constants';
 import { getShortcutKey } from '../../../utils/common';
@@ -76,6 +76,135 @@ export const OpenFile = () => {
   );
 };
 OpenFile.displayName = 'OpenFile';
+
+export const OpenFromServer = () => {
+  const board = useBoard();
+  const listRender = useListRender();
+  const { t } = useI18n();
+  const menuContentProps = useContext(MenuContentPropsContext);
+
+  const clearAndLoad = (
+    value: PlaitElement[],
+    viewport?: Viewport,
+    theme?: PlaitTheme
+  ) => {
+    board.children = value;
+    board.viewport = viewport || { zoom: 1 };
+    board.theme = theme || { themeColorMode: ThemeColorMode.default };
+    listRender.update(board.children, {
+      board: board,
+      parent: board,
+      parentG: PlaitBoard.getElementHost(board),
+    });
+    BoardTransforms.fitViewport(board);
+  };
+
+  const env = (import.meta as any).env || {};
+  const explicitEndpoint = env?.VITE_UPLOAD_ENDPOINT as string | undefined;
+  const isDev = !!env?.DEV;
+  const token = env?.VITE_UPLOAD_TOKEN as string | undefined;
+  const fallbackDevEndpoint = 'http://localhost:8787/upload';
+  const uploadEndpoint = explicitEndpoint || (isDev ? fallbackDevEndpoint : undefined);
+  const baseEndpoint = useMemo(() => {
+    if (!uploadEndpoint) return undefined;
+    return uploadEndpoint.replace(/\/?upload$/i, '');
+  }, [uploadEndpoint]);
+
+  const Submenu = () => {
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [files, setFiles] = useState<Array<{ name: string; relativePath: string; dir: string; size: number; mtime: number }>>([]);
+
+    useEffect(() => {
+      let aborted = false;
+      async function load() {
+        if (!baseEndpoint) {
+          setError('未配置服务器端点');
+          setLoading(false);
+          return;
+        }
+        try {
+          const res = await fetch(baseEndpoint + '/files', {
+            headers: {
+              ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            },
+          });
+          if (!res.ok) throw new Error(String(res.status));
+          const data = await res.json();
+          if (!aborted) {
+            setFiles(Array.isArray(data?.files) ? data.files : []);
+            setLoading(false);
+          }
+        } catch (e) {
+          if (!aborted) {
+            setError('加载失败');
+            setLoading(false);
+          }
+        }
+      }
+      load();
+      return () => {
+        aborted = true;
+      };
+    }, []);
+
+    const handleOpen = async (relativePath: string) => {
+      try {
+        const res = await fetch(baseEndpoint + '/file?path=' + encodeURIComponent(relativePath), {
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        const data = await res.json();
+        const content = data?.content;
+        if (!content || typeof content !== 'string') throw new Error('Invalid content');
+        const parsed = JSON.parse(content);
+        if (!isValidDrawnixData(parsed)) throw new Error('Invalid data');
+        clearAndLoad(parsed.elements, parsed.viewport);
+        const itemSelectEvent = new CustomEvent(EVENT.MENU_ITEM_SELECT, {
+          bubbles: true,
+          cancelable: true,
+        });
+        menuContentProps.onSelect?.(itemSelectEvent);
+      } catch (e) {
+        alert('打开失败');
+      }
+    };
+
+    return (
+      <Menu onSelect={() => {
+        const itemSelectEvent = new CustomEvent(EVENT.MENU_ITEM_SELECT, {
+          bubbles: true,
+          cancelable: true,
+        });
+        menuContentProps.onSelect?.(itemSelectEvent);
+      }}>
+        {loading && <MenuItem onSelect={() => {}}>{'加载中...'}</MenuItem>}
+        {!loading && error && <MenuItem onSelect={() => {}}>{error}</MenuItem>}
+        {!loading && !error && files.length === 0 && (
+          <MenuItem onSelect={() => {}}>{'暂无文件'}</MenuItem>
+        )}
+        {!loading && !error && files.map((f) => (
+          <MenuItem key={f.relativePath} onSelect={() => handleOpen(f.relativePath)} aria-label={f.name}>
+            {f.dir ? `${f.dir}/${f.name}` : f.name}
+          </MenuItem>
+        ))}
+      </Menu>
+    );
+  };
+
+  return (
+    <MenuItem
+      data-testid="open-server-button"
+      onSelect={() => {}}
+      icon={OpenFileIcon}
+      aria-label={t('menu.openFromServer')}
+      submenu={<Submenu />}
+    >{t('menu.openFromServer')}</MenuItem>
+  );
+};
+OpenFromServer.displayName = 'OpenFromServer';
 
 export const SaveAsImage = () => {
   const board = useBoard();
@@ -161,11 +290,12 @@ Socials.displayName = 'Socials';
 export const SaveToServer = () => {
   const board = useBoard();
   const { t } = useI18n();
+  const { appState, setAppState } = useDrawnix();
   return (
     <MenuItem
       data-testid="save-server-button"
       onSelect={() => {
-        saveToServer(board);
+        setAppState({ ...appState, openSaveDialog: true });
       }}
       icon={SaveFileIcon}
       aria-label={t('menu.saveFile')}

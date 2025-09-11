@@ -3,22 +3,29 @@ import { getDefaultName, serializeAsJSON } from './json';
 
 export const saveToServer = async (
   board: PlaitBoard,
-  name: string = getDefaultName()
+  name?: string
 ) => {
-  const endpoint = (import.meta as any).env?.VITE_UPLOAD_ENDPOINT as
-    | string
-    | undefined;
+  const env = (import.meta as any).env || {};
+  const explicitEndpoint = env?.VITE_UPLOAD_ENDPOINT as string | undefined;
+  const isDev = !!env?.DEV;
+  const fallbackDevEndpoint = 'http://localhost:8787/upload';
+
+  const endpoint = explicitEndpoint || (isDev ? fallbackDevEndpoint : undefined);
+
   if (!endpoint) {
     alert('未配置上传端点：VITE_UPLOAD_ENDPOINT');
     return;
   }
-  const dir = (import.meta as any).env?.VITE_UPLOAD_DIR as string | undefined;
-  const token = (import.meta as any).env?.VITE_UPLOAD_TOKEN as
-    | string
-    | undefined;
+
+  const dir = env?.VITE_UPLOAD_DIR as string | undefined;
+  const token = env?.VITE_UPLOAD_TOKEN as string | undefined;
+
+  // Determine filename. If not provided, fallback to default name.
+  const finalName = (name && name.trim()) || getDefaultName();
 
   const serialized = serializeAsJSON(board);
   try {
+    console.log('[saveToServer] endpoint =', endpoint);
     const res = await fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -26,7 +33,7 @@ export const saveToServer = async (
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
       body: JSON.stringify({
-        filename: `${name}.drawnix`,
+        filename: `${finalName}.drawnix`,
         content: serialized,
         ...(dir ? { dir } : {}),
       }),
@@ -39,7 +46,6 @@ export const saveToServer = async (
       return;
     }
 
-    // 尝试解析响应
     let data: any = null;
     try {
       data = await res.json();
