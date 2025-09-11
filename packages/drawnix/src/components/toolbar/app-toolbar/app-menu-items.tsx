@@ -104,11 +104,15 @@ export const OpenFromServer = () => {
   const isDev = !!env?.DEV;
   const token = env?.VITE_UPLOAD_TOKEN as string | undefined;
   const fallbackDevEndpoint = 'http://localhost:8787/upload';
-  const uploadEndpoint = explicitEndpoint || (isDev ? fallbackDevEndpoint : undefined);
+  const sameOriginBase = typeof window !== 'undefined' && (window as any).location?.origin ? (window as any).location.origin : '';
+  const sameOriginUpload = sameOriginBase ? sameOriginBase + '/upload' : '/upload';
+  const uploadEndpoint = explicitEndpoint || (isDev ? fallbackDevEndpoint : sameOriginUpload);
   const baseEndpoint = useMemo(() => {
     if (!uploadEndpoint) return undefined;
-    return uploadEndpoint.replace(/\/?upload$/i, '');
-  }, [uploadEndpoint]);
+    const base = uploadEndpoint.replace(/\/?upload$/i, '');
+    // If base becomes empty (e.g., explicitEndpoint is '/upload'), fallback to same-origin origin.
+    return base || sameOriginBase || undefined;
+  }, [uploadEndpoint, sameOriginBase]);
 
   const Submenu = () => {
     const [loading, setLoading] = useState(true);
@@ -118,13 +122,17 @@ export const OpenFromServer = () => {
     useEffect(() => {
       let aborted = false;
       async function load() {
-        if (!baseEndpoint) {
-          setError('未配置服务器端点');
-          setLoading(false);
-          return;
+        // runtime fallback if baseEndpoint is not ready
+        let effectiveBase = baseEndpoint;
+        if (!effectiveBase && typeof window !== 'undefined' && (window as any).location?.origin) {
+          effectiveBase = (window as any).location.origin;
         }
+        // debug
+        try { console.debug('[OpenFromServer] explicitEndpoint=', explicitEndpoint, 'isDev=', isDev, 'uploadEndpoint=', uploadEndpoint, 'baseEndpoint=', baseEndpoint, 'effectiveBase=', effectiveBase); } catch {}
+
         try {
-          const res = await fetch(baseEndpoint + '/files', {
+          const url = (effectiveBase || '') + '/files';
+          const res = await fetch(url, {
             headers: {
               ...(token ? { Authorization: `Bearer ${token}` } : {}),
             },
@@ -149,8 +157,14 @@ export const OpenFromServer = () => {
     }, []);
 
     const handleOpen = async (relativePath: string) => {
+      // runtime fallback for handleOpen as well
+      let effectiveBase = baseEndpoint;
+      if (!effectiveBase && typeof window !== 'undefined' && (window as any).location?.origin) {
+        effectiveBase = (window as any).location.origin;
+      }
       try {
-        const res = await fetch(baseEndpoint + '/file?path=' + encodeURIComponent(relativePath), {
+        const url = (effectiveBase || '') + '/file?path=' + encodeURIComponent(relativePath);
+        const res = await fetch(url, {
           headers: {
             ...(token ? { Authorization: `Bearer ${token}` } : {}),
           },

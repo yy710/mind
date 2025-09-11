@@ -9,8 +9,9 @@ export const saveToServer = async (
   const explicitEndpoint = env?.VITE_UPLOAD_ENDPOINT as string | undefined;
   const isDev = !!env?.DEV;
   const fallbackDevEndpoint = 'http://localhost:8787/upload';
+  const sameOriginUpload = typeof window !== 'undefined' ? `${window.location.origin}/upload` : '/upload';
 
-  const endpoint = explicitEndpoint || (isDev ? fallbackDevEndpoint : undefined);
+  const endpoint = explicitEndpoint || (isDev ? fallbackDevEndpoint : sameOriginUpload);
 
   if (!endpoint) {
     alert('未配置上传端点：VITE_UPLOAD_ENDPOINT');
