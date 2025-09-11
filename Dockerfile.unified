@@ -1,0 +1,38 @@
+# syntax=docker/dockerfile:1
+
+# Build stage: compile the frontend (apps/web) using Nx/Vite
+FROM node:20 AS builder
+
+WORKDIR /builder
+
+# Install dependencies first to leverage Docker layer cache
+COPY package.json package-lock.json ./
+RUN npm ci
+
+# Copy the rest of the repo and build only the web app
+COPY . .
+# Ensure the frontend builds with the same upload endpoint the unified server expects
+ENV VITE_UPLOAD_ENDPOINT=/upload
+RUN npm run build:web
+
+# Runtime stage: lightweight Node image running the unified server (Express)
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+# Only production deps for runtime
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+
+# Copy the unified server and the built static assets
+COPY scripts/unified-server.js ./scripts/unified-server.js
+COPY --from=builder /builder/dist/apps/web ./dist/apps/web
+
+# Default environment
+ENV NODE_ENV=production
+ENV PORT=8080
+ENV UPLOAD_BASE_DIR=.uploads
+
+EXPOSE 8080
+
+CMD ["node", "scripts/unified-server.js"]
