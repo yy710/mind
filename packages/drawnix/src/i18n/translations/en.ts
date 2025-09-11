@@ -74,10 +74,11 @@ const enTranslations: Translations = {
   // Menu items
   'menu.open': 'Open',
   'menu.saveFile': 'Save File',
+  'menu.exportFile': 'Export File',
   'menu.exportImage': 'Export Image',
   'menu.exportImage.png': 'PNG',
   'menu.exportImage.jpg': 'JPG',
-  'menu.cleanBoard': 'Clear Board',
+  'menu.cleanBoard': 'Clean Board',
   'menu.github': 'GitHub',
 
   // Dialog translations

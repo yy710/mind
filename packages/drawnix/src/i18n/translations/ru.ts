@@ -75,10 +75,11 @@ const ruTranslations: Translations = {
   // Menu items
   'menu.open': 'Открыть',
   'menu.saveFile': 'Сохранить',
-  'menu.exportImage': 'Экспортировать',
+  'menu.exportFile': 'Экспорт файла',
+  'menu.exportImage': 'Экспорт изображения',
   'menu.exportImage.png': 'PNG',
   'menu.exportImage.jpg': 'JPG',
-  'menu.cleanBoard': 'Очистить доску',
+  'menu.cleanBoard': 'Очистить холст',
   'menu.github': 'GitHub',
   
   // Dialog translations
@@ -166,6 +167,14 @@ const ruTranslations: Translations = {
   // Mind map elements text
   'mind.centralText': 'Центральная тема',
   'mind.abstractNodeText': 'Резюме',
+
+  // Tutorial / onboarding
+  'tutorial.title': 'Drawnix',
+  'tutorial.description': 'Многофункциональная доска: майнд-карты, блок-схемы, свободное рисование и многое другое',
+  'tutorial.dataDescription': 'Все данные хранятся локально в вашем браузере',
+  'tutorial.appToolbar': 'Экспорт, настройки языка, ...',
+  'tutorial.creationToolbar': 'Выберите инструмент, чтобы начать создавать',
+  'tutorial.themeDescription': 'Переключение между светлой и тёмной темами',
 };
 
 export default ruTranslations;

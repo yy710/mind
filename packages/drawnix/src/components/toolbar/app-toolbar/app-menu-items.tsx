@@ -25,6 +25,7 @@ import { useContext } from 'react';
 import { MenuContentPropsContext } from '../../menu/common';
 import { EVENT } from '../../../constants';
 import { getShortcutKey } from '../../../utils/common';
+import { saveToServer } from '../../../data/upload';
 
 export const SaveToFile = () => {
   const board = useBoard();
@@ -36,9 +37,8 @@ export const SaveToFile = () => {
         saveAsJSON(board);
       }}
       icon={SaveFileIcon}
-      aria-label={t('menu.saveFile')}
-      shortcut={getShortcutKey('CtrlOrCmd+S')}
-    >{t('menu.saveFile')}</MenuItem>
+      aria-label={t('menu.exportFile')}
+    >{t('menu.exportFile')}</MenuItem>
   );
 };
 SaveToFile.displayName = 'SaveToFile';
@@ -157,3 +157,20 @@ export const Socials = () => {
   );
 };
 Socials.displayName = 'Socials';
+
+export const SaveToServer = () => {
+  const board = useBoard();
+  const { t } = useI18n();
+  return (
+    <MenuItem
+      data-testid="save-server-button"
+      onSelect={() => {
+        saveToServer(board);
+      }}
+      icon={SaveFileIcon}
+      aria-label={t('menu.saveFile')}
+      shortcut={getShortcutKey('CtrlOrCmd+S')}
+    >{t('menu.saveFile')}</MenuItem>
+  );
+};
+SaveToServer.displayName = 'SaveToServer';

@@ -6,7 +6,7 @@ import {
 } from '@plait/core';
 import { isHotkey } from 'is-hotkey';
 import { addImage, saveAsImage } from '../utils/image';
-import { saveAsJSON } from '../data/json';
+import { saveToServer } from '../data/upload';
 import { DrawnixState } from '../hooks/use-drawnix';
 import { BoardCreationMode, setCreationMode } from '@plait/common';
 import { MindPointerType } from '@plait/mind';
@@ -34,7 +34,7 @@ export const buildDrawnixHotkeyPlugin = (
           return;
         }
         if (isHotkey(['mod+s'], { byKey: true })(event)) {
-          saveAsJSON(board);
+          saveToServer(board);
           event.preventDefault();
           return;
         }

@@ -75,6 +75,7 @@ const arTranslations: Translations = {
     // Menu items
     "menu.open": "فتح",
     "menu.saveFile": "حفظ الملف",
+    "menu.exportFile": "تصدير ملف",
     "menu.exportImage": "تصدير صورة",
     "menu.exportImage.png": "PNG",
     "menu.exportImage.jpg": "JPG",
@@ -161,7 +162,15 @@ const arTranslations: Translations = {
 
     // Mind map elements text
     "mind.centralText": "الموضوع المركزي",
-    "mind.abstractNodeText": "ملخص"
+    "mind.abstractNodeText": "ملخص",
+
+    // Tutorial / onboarding
+    'tutorial.title': 'Drawnix',
+    'tutorial.description': 'لوحة شاملة تتضمن خرائط ذهنية ومخططات وتحرير حر وأكثر',
+    'tutorial.dataDescription': 'جميع البيانات مخزنة محليًا في المتصفح',
+    'tutorial.appToolbar': 'تصدير، إعدادات اللغة، ...',
+    'tutorial.creationToolbar': 'اختر أداة لبدء الإنشاء',
+    'tutorial.themeDescription': 'التبديل بين الوضعين الفاتح والداكن'
 };
 
 export default arTranslations;

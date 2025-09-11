@@ -75,6 +75,7 @@ const zhTranslations: Translations = {
   // Menu items
   'menu.open': '打开',
   'menu.saveFile': '保存文件',
+  'menu.exportFile': '导出文件',
   'menu.exportImage': '导出图片',
   'menu.exportImage.png': 'PNG',
   'menu.exportImage.jpg': 'JPG',
