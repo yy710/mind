@@ -31,7 +31,7 @@ const ruTranslations: Translations = {
   'zoom.out': 'Уменьшить — Cmd+-',
   'zoom.fit': 'По размеру экрана',
   'zoom.100': 'Сбросить к 100%',
-  
+
   // Themes
   'theme.default': 'Стандартная',
   'theme.colorful': 'Красочная',
@@ -64,7 +64,7 @@ const ruTranslations: Translations = {
   'general.menu': 'Меню приложения',
   'general.duplicate': 'Дублировать',
   'general.delete': 'Удалить',
-  
+
   // Language
   'language.switcher': 'Language',
   'language.chinese': '中文',
@@ -74,31 +74,29 @@ const ruTranslations: Translations = {
   
   // Menu items
   'menu.open': 'Открыть',
+  'menu.openFromServer': 'Открыть файл (с сервера)',
   'menu.saveFile': 'Сохранить',
-  'menu.exportImage': 'Экспортировать',
+  'menu.exportFile': 'Экспорт файла',
+  'menu.exportImage': 'Экспорт изображения',
   'menu.exportImage.png': 'PNG',
   'menu.exportImage.jpg': 'JPG',
-  'menu.cleanBoard': 'Очистить доску',
+  'menu.cleanBoard': 'Очистить холст',
   'menu.github': 'GitHub',
-  
+
   // Dialog translations
   'dialog.mermaid.title': 'Mermaid в Drawnix',
   'dialog.mermaid.description': 'Поддерживаются',
   'dialog.mermaid.flowchart': 'блок-схемы',
   'dialog.mermaid.sequence': 'диаграммы последовательностей', 
   'dialog.mermaid.class': 'диаграммы классов',
-  'dialog.mermaid.otherTypes':
-    ' и другие диаграммы (преобразуются в изображения).',
+  'dialog.mermaid.otherTypes': ' и другие диаграммы (преобразуются в изображения).',
   'dialog.mermaid.syntax': 'Синтаксис Mermaid',
-  'dialog.mermaid.placeholder':
-    'Введите сюда описание вашей Mermaid-диаграммы…',
+  'dialog.mermaid.placeholder': 'Введите сюда описание вашей Mermaid-диаграммы…',
   'dialog.mermaid.preview': 'Предпросмотр',
   'dialog.mermaid.insert': 'Вставить',
-  'dialog.markdown.description':
-    'Поддерживается автоматическое преобразование синтаксиса Markdown в mind-карты.',
+  'dialog.markdown.description': 'Поддерживается автоматическое преобразование синтаксиса Markdown в mind-карты.',
   'dialog.markdown.syntax': 'Синтаксис Markdown',
-  'dialog.markdown.placeholder':
-    'Введите сюда описание вашего текста Markdown…',
+  'dialog.markdown.placeholder': 'Введите сюда описание вашего текста Markdown…',
   'dialog.markdown.preview': 'Предпросмотр',
   'dialog.markdown.insert': 'Вставить',
   'dialog.error.loadMermaid': 'Не удалось загрузить библотеку Mermaid',
@@ -109,10 +107,15 @@ const ruTranslations: Translations = {
 
   // Clean confirm dialog
   'cleanConfirm.title': 'Очистить доску',
-  'cleanConfirm.description':
-    'Это удалит всё содержимое доски. Вы хотите продолжить?',
+  'cleanConfirm.description': 'Это удалит всё содержимое доски. Вы хотите продолжить?',
   'cleanConfirm.cancel': 'Отмена',
   'cleanConfirm.ok': 'ОК',
+
+  // Save dialog
+  'saveDialog.title': 'Сохранить файл',
+  'saveDialog.placeholder': 'Введите имя файла',
+  'saveDialog.cancel': 'Отмена',
+  'saveDialog.ok': 'Сохранить',
 
   // Link popup items
   'popupLink.delLink': 'Удалить ссылку',
@@ -122,7 +125,7 @@ const ruTranslations: Translations = {
   'popupToolbar.fontColor': 'Цвет текста',
   'popupToolbar.link': 'Вставить ссылку',
   'popupToolbar.stroke': 'Контур',
-  
+
   // Text placeholders
   'textPlaceholders.link': 'Ссылка',
   'textPlaceholders.text': 'Текст',
@@ -138,20 +141,20 @@ const ruTranslations: Translations = {
   'stroke.dashed': 'Штриховой',
   'stroke.dotted': 'Пунктирный',
 
-  //markdown example
+  // markdown example
   'markdown.example': `# I have started
 
   - Let me see who made this bug 🕵️ ♂️ 🔍
-    - 😯 💣
-      - Turns out it was me 👈 🎯 💘
+  - 😯 💣
+  - Turns out it was me 👈 🎯 💘
 
   - Unexpectedly, it cannot run; why is that 🚫 ⚙️ ❓
-    - Unexpectedly, it can run now; why is that? 🎢 ✨
-      - 🤯 ⚡ ➡️ 🎉
+  - Unexpectedly, it can run now; why is that? 🎢 ✨
+  - 🤯 ⚡ ➡️ 🎉
 
   - What can run 🐞 🚀
-    - then do not touch it 🛑 ✋
-      - 👾 💥 🏹 🎯
+  - then do not touch it 🛑 ✋
+  - 👾 💥 🏹 🎯
     
   ## Boy or girl 👶 ❓ 🤷 ♂️ ♀️
 
@@ -162,10 +165,17 @@ const ruTranslations: Translations = {
   // Draw elements text
   'draw.lineText': 'Текст',
   'draw.geometryText': 'Текст',
-  
+
   // Mind map elements text
   'mind.centralText': 'Центральная тема',
   'mind.abstractNodeText': 'Резюме',
+
+  'tutorial.title': 'Drawnix',
+  'tutorial.description': 'Многофункциональная доска: майнд-карты, блок-схемы, свободное рисование и многое другое',
+  'tutorial.dataDescription': 'Все данные хранятся локально в вашем браузере',
+  'tutorial.appToolbar': 'Экспорт, настройки языка, ...',
+  'tutorial.creationToolbar': 'Выберите инструмент, чтобы начать создавать',
+  'tutorial.themeDescription': 'Переключение между светлой и тёмной темами',
 };
 
 export default ruTranslations;

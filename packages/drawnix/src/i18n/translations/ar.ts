@@ -74,7 +74,9 @@ const arTranslations: Translations = {
 
     // Menu items
     "menu.open": "فتح",
+    "menu.openFromServer": "فتح ملف (من الخادم)",
     "menu.saveFile": "حفظ الملف",
+    "menu.exportFile": "تصدير ملف",
     "menu.exportImage": "تصدير صورة",
     "menu.exportImage.png": "PNG",
     "menu.exportImage.jpg": "JPG",
@@ -109,6 +111,12 @@ const arTranslations: Translations = {
     "cleanConfirm.cancel": "إلغاء",
     "cleanConfirm.ok": "موافق",
 
+    // Save dialog
+    'saveDialog.title': 'حفظ الملف',
+    'saveDialog.placeholder': 'أدخل اسم الملف',
+    'saveDialog.cancel': 'إلغاء',
+    'saveDialog.ok': 'حفظ',
+
     // Link popup items
     "popupLink.delLink": "حذف الرابط",
 
@@ -133,8 +141,7 @@ const arTranslations: Translations = {
     "stroke.dashed": "متقطع",
     "stroke.dotted": "منقط",
 
-    //markdown example
-    //   "markdown.example": "# لقد بدأت\n\n- دعني أرى من تسبب بهذا الخطأ 🕵️ ♂️ 🔍\n  - 😯 💣\n    - اتضح أنه أنا 👈 🎯 💘\n\n- بشكل غير متوقع، لا يعمل؛ لماذا 🚫 ⚙️ ❓\n  - بشكل غير متوقع، أصبح يعمل الآن؛ لماذا؟ 🎢 ✨\n    - 🤯 ⚡ ➡️ 🎉\n\n- ما الذي يمكن تشغيله 🐞 🚀\n  - إذًا لا تلمسه 🛑 ✋\n    - 👾 💥 🏹 🎯\n\n## ولد أم بنت 👶 ❓ 🤷 ♂️ ♀️\n\n### مرحبًا بالعالم 👋 🌍 ✨ 💻\n\n#### واو، مبرمج 🤯 ⌨️ 💡 👩 💻",
+    // markdown example
     'markdown.example': `# I have started
 
   - دعني أرى من تسبب بهذا الخطأ  🕵️ ♂️ 🔍
@@ -161,7 +168,15 @@ const arTranslations: Translations = {
 
     // Mind map elements text
     "mind.centralText": "الموضوع المركزي",
-    "mind.abstractNodeText": "ملخص"
+    "mind.abstractNodeText": "ملخص",
+
+    // Tutorial / onboarding
+    'tutorial.title': 'Drawnix',
+    'tutorial.description': 'لوحة شاملة تتضمن خرائط ذهنية ومخططات وتحرير حر وأكثر',
+    'tutorial.dataDescription': 'جميع البيانات مخزنة محليًا في المتصفح',
+    'tutorial.appToolbar': 'تصدير، إعدادات اللغة، ...',
+    'tutorial.creationToolbar': 'اختر أداة لبدء الإنشاء',
+    'tutorial.themeDescription': 'التبديل بين الوضعين الفاتح والداكن'
 };
 
 export default arTranslations;

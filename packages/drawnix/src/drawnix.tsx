@@ -39,6 +39,7 @@ import { buildTextLinkPlugin } from './plugins/with-text-link';
 import { LinkPopup } from './components/popup/link-popup/link-popup';
 import { I18nProvider } from './i18n';
 import { Tutorial } from './components/tutorial';
+import { SaveDialog } from './components/save-dialog/save-dialog';
 
 export type DrawnixProps = {
   value: PlaitElement[];
@@ -81,6 +82,7 @@ export const Drawnix: React.FC<DrawnixProps> = ({
       isPencilMode: false,
       openDialogType: null,
       openCleanConfirm: false,
+      openSaveDialog: false,
     };
   });
 
@@ -155,6 +157,7 @@ export const Drawnix: React.FC<DrawnixProps> = ({
             <ClosePencilToolbar></ClosePencilToolbar>
             <TTDDialog container={containerRef.current}></TTDDialog>
             <CleanConfirm container={containerRef.current}></CleanConfirm>
+            <SaveDialog container={containerRef.current}></SaveDialog>
           </Wrapper>
         </div>
       </DrawnixContext.Provider>

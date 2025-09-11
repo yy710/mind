@@ -8,7 +8,11 @@
     "build:web": "nx build web",
     "test": "nx run-many -t=test",
     "release": "node scripts/release-version.js",
-    "pub": "npm run build && node scripts/publish.js"
+    "pub": "npm run build && node scripts/publish.js",
+    "mock:upload": "node scripts/mock-upload-server.js",
+    "mock:upload:auth": "MOCK_TOKEN=devtoken node scripts/mock-upload-server.js",
+    "mock:upload:custom": "PORT=8989 MOCK_BASE_DIR=.uploads-dev MOCK_TOKEN=devtoken node scripts/mock-upload-server.js",
+    "start:unified": "node scripts/unified-server.js"
   },
   "private": true,
   "dependencies": {
@@ -33,7 +37,8 @@
     "slate-dom": "^0.116.0",
     "slate-history": "^0.115.0",
     "slate-react": "^0.116.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "express": "^4.19.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
