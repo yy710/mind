@@ -38,7 +38,7 @@ export const CleanConfirm = ({
             autoFocus
             onClick={() => {
               board.deleteFragment(board.children);
-              setAppState({ ...appState, openCleanConfirm: false });
+              setAppState({ ...appState, openCleanConfirm: false, currentFileName: null });
             }}
           >
             {t('cleanConfirm.ok')}

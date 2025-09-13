@@ -72,7 +72,7 @@ const enTranslations: Translations = {
 
   // Menu items
   'menu.open': 'Import File',
-  'menu.openFromServer': 'Open File (from server)',
+  'menu.openFromServer': 'Open File',
   'menu.saveFile': 'Save File',
   'menu.exportFile': 'Export File',
   'menu.exportImage': 'Export Image',

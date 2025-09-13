@@ -41,6 +41,10 @@ export type DrawnixState = {
   openDialogType: DialogType | null;
   openCleanConfirm: boolean;
   openSaveDialog: boolean;
+  // 新增：从服务器打开文件的弹窗
+  openServerDialog: boolean;
+  // 新增：当前文件名（无扩展名）；新建文件为 null
+  currentFileName?: string | null;
   linkState?: LinkState | null;
 };
 

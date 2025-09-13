@@ -40,6 +40,7 @@ import { LinkPopup } from './components/popup/link-popup/link-popup';
 import { I18nProvider } from './i18n';
 import { Tutorial } from './components/tutorial';
 import { SaveDialog } from './components/save-dialog/save-dialog';
+import { OpenFromServerDialog } from './components/open-server-dialog/open-server-dialog';
 
 export type DrawnixProps = {
   value: PlaitElement[];
@@ -83,6 +84,9 @@ export const Drawnix: React.FC<DrawnixProps> = ({
       openDialogType: null,
       openCleanConfirm: false,
       openSaveDialog: false,
+      // 新增初始化
+      openServerDialog: false,
+      currentFileName: null,
     };
   });
 
@@ -158,6 +162,8 @@ export const Drawnix: React.FC<DrawnixProps> = ({
             <TTDDialog container={containerRef.current}></TTDDialog>
             <CleanConfirm container={containerRef.current}></CleanConfirm>
             <SaveDialog container={containerRef.current}></SaveDialog>
+            <OpenFromServerDialog container={containerRef.current}></OpenFromServerDialog>
+            {/* TODO: OpenFromServerDialog will be mounted here */}
           </Wrapper>
         </div>
       </DrawnixContext.Provider>

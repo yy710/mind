@@ -33,7 +33,10 @@ export const loadFromJSON = async (board: PlaitBoard) => {
     // gets resolved. Else, iOS users cannot open `.drawnix` files.
     // extensions: ["json", "drawnix", "png", "svg"],
   });
-  return loadFromBlob(board, await normalizeFile(file));
+  const normalized = await normalizeFile(file);
+  const data = await loadFromBlob(board, normalized);
+  const name = (normalized as any)?.name || (file as any)?.name || '';
+  return { ...(data as any), __filename: name } as any;
 };
 
 export const isValidDrawnixData = (data?: any): data is DrawnixExportedData => {

@@ -15,13 +15,13 @@ export const SaveDialog = ({
   const { appState, setAppState } = useDrawnix();
   const { t } = useI18n();
   const board = useBoard();
-  const [name, setName] = useState<string>(getDefaultName());
+  const [name, setName] = useState<string>(appState.currentFileName || getDefaultName());
   const [submitting, setSubmitting] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (appState.openSaveDialog) {
-      const defaultName = getDefaultName();
+      const defaultName = appState.currentFileName || getDefaultName();
       setName(defaultName);
       // focus on next tick
       setTimeout(() => {
@@ -29,7 +29,7 @@ export const SaveDialog = ({
         inputRef.current?.select();
       }, 0);
     }
-  }, [appState.openSaveDialog]);
+  }, [appState.openSaveDialog, appState.currentFileName]);
 
   const close = () => setAppState({ ...appState, openSaveDialog: false });
 
@@ -37,9 +37,11 @@ export const SaveDialog = ({
     if (submitting) return;
     setSubmitting(true);
     try {
-      const finalName = (name || '').trim() || getDefaultName();
+      const finalName = (name || '').trim() || appState.currentFileName || getDefaultName();
       await saveToServer(board, finalName);
-      close();
+      // 保存成功后，回写当前文件名（去掉扩展名）
+      setAppState({ ...appState, openSaveDialog: false, currentFileName: finalName });
+      // close();
     } finally {
       setSubmitting(false);
     }

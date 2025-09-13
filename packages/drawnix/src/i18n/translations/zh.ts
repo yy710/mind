@@ -72,7 +72,7 @@ const zhTranslations: Translations = {
   
   // Menu items
   'menu.open': '导入文件',
-  'menu.openFromServer': '打开文件（从服务器）',
+  'menu.openFromServer': '打开文件',
   'menu.saveFile': '保存文件',
   'menu.exportFile': '导出文件',
   'menu.exportImage': '导出图片',
