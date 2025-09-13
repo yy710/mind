@@ -1,13 +1,11 @@
 import React, { createContext, useContext, useState, useMemo } from 'react';
-import { zhTranslations, enTranslations, ruTranslations,arTranslations } from './translations';
+import { zhTranslations, enTranslations } from './translations';
 import { Language, Translations, I18nContextType, I18nProviderProps } from './types';
 
 // Translation data
 const translations: Record<Language, Translations> = {
   zh: zhTranslations,
-  en: enTranslations,
-  ru: ruTranslations,
-  ar:arTranslations
+  en: enTranslations
 };
 
 // Create the context
@@ -19,8 +17,8 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({
 }) => {
 
     const [language, setLanguageState] = useState<Language>(() => {
-        const storedLanguage = localStorage.getItem('language') as Language;
-        return storedLanguage || defaultLanguage;
+        const raw = (localStorage.getItem('language') as Language) || defaultLanguage;
+        return raw === 'en' ? 'en' : 'zh';
     });
 
     const setLanguage = (newLanguage: Language) => {
@@ -58,10 +56,10 @@ export const i18nInsidePlaitHook = () => {
 
     const i18n = {
         t: (key: keyof Translations): string => {  
-            const currentLang = localStorage.getItem('language') as Language || 'zh';
+            const currentLang = ((localStorage.getItem('language') as Language) === 'en') ? 'en' : 'zh';
             return translations[currentLang][key] || key;
         },
-        language: localStorage.getItem('language') as Language || 'zh',
+        language: ((localStorage.getItem('language') as Language) === 'en') ? 'en' : 'zh',
     };
 
     return i18n;

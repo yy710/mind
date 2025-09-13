@@ -69,8 +69,6 @@ const enTranslations: Translations = {
   'language.switcher': 'Language',
   'language.chinese': '中文',
   'language.english': 'English',
-  'language.russian': 'Русский',
-  'language.arabic': 'عربي',
 
   // Menu items
   'menu.open': 'Import File',

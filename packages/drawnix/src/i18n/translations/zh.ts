@@ -69,8 +69,6 @@ const zhTranslations: Translations = {
   'language.switcher': 'Language',
   'language.chinese': '中文',
   'language.english': 'English',
-  'language.russian': 'Русский',
-  'language.arabic': 'عربي',
   
   // Menu items
   'menu.open': '导入文件',
